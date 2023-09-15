@@ -16,8 +16,9 @@ class SearchResultDelegate extends SearchDelegate<Result?> {
     required this.searchResults,
     required this.initialResults,
   }) : super(
-            searchFieldLabel: 'Search',
-            searchFieldStyle: const TextStyle(fontSize: size18));
+          searchFieldLabel: 'Search',
+          searchFieldStyle: const TextStyle(fontSize: size18),
+        );
 
   final SearchResultsCallback searchResults;
   List<Result> initialResults = [];

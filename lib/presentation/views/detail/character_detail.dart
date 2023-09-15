@@ -29,9 +29,9 @@ class CharacterDetailsScreen extends StatelessWidget {
               _ImageDetaild(size: size, detailResult: detailResult)
             ],
             _BodyDetail(
+              detailResult: detailResult!,
               size: size,
               textStyle: textStyle,
-              detailResult: detailResult!,
             )
           ],
         ),
@@ -43,14 +43,14 @@ class CharacterDetailsScreen extends StatelessWidget {
 
 class _BodyDetail extends StatelessWidget {
   const _BodyDetail({
+    required this.detailResult,
     required this.size,
     required this.textStyle,
-    required this.detailResult,
   });
 
+  final Result detailResult;
   final Size size;
   final TextTheme textStyle;
-  final Result detailResult;
 
   @override
   Widget build(BuildContext context) {
@@ -64,48 +64,48 @@ class _BodyDetail extends StatelessWidget {
             Text('- PROPERTIES -', style: textStyle.titleSmall),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.name,
+              size: size,
               type: 'Name',
             ),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.gender.name,
+              size: size,
               type: 'Gender',
             ),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.species,
+              size: size,
               type: 'Specie',
             ),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.status.name,
+              size: size,
               type: 'Status',
             ),
             gap16,
             Text('- WHEREABOUTS -', style: textStyle.titleSmall),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.origin.name,
+              size: size,
               type: 'Origin',
             ),
             gap16,
             _DataTable(
-              size: size,
               detailResult: detailResult.location.name,
+              size: size,
               type: 'Location',
             ),
             gap16,
             Text('- FEATURED CHAPTERS -', style: textStyle.titleSmall),
             gap16,
             _DataTable(
-              size: size,
               detailResult: '${detailResult.episodes!.length}',
+              size: size,
               type: 'Episodes',
             ),
           ],
@@ -117,13 +117,13 @@ class _BodyDetail extends StatelessWidget {
 
 class _DataTable extends StatelessWidget {
   const _DataTable({
-    required this.size,
     required this.detailResult,
+    required this.size,
     required this.type,
   });
 
-  final Size size;
   final String detailResult;
+  final Size size;
   final String type;
 
   @override
@@ -151,12 +151,12 @@ class _DataTable extends StatelessWidget {
 
 class _ImageDetaild extends StatelessWidget {
   const _ImageDetaild({
-    required this.size,
     required this.detailResult,
+    required this.size,
   });
 
-  final Size size;
   final Result? detailResult;
+  final Size size;
 
   @override
   Widget build(BuildContext context) {

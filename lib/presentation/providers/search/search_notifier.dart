@@ -5,13 +5,13 @@ final searchQueryProvider = StateProvider<String>((ref) => '');
 typedef SearchResultCallback = Future<List<Result>> Function(String query);
 
 class SearchResultnotifier extends StateNotifier<List<Result>> {
-  SearchResultnotifier({
-    required this.searchResults,
-    required this.ref,
-  }) : super([]);
-
-  final SearchResultCallback searchResults;
   final Ref ref;
+  final SearchResultCallback searchResults;
+
+  SearchResultnotifier({
+    required this.ref,
+    required this.searchResults,
+  }) : super([]);
 
   Future<List<Result>> searchResultByQuery(String query) async {
     try {

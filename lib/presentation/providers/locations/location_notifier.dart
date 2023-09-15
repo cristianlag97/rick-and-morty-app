@@ -1,8 +1,8 @@
 part of presentation.providers.location;
 
-typedef GetLocationsCallback = Future<List<Result>> Function({int page});
 typedef GetIfoLocationCallback = Future<Info> Function({int page});
 typedef GetLocationByIdCallback = Future<Result> Function(String locationId);
+typedef GetLocationsCallback = Future<List<Result>> Function({int page});
 typedef GetLocationSearchCallback = Future<List<Result>> Function(
     String filter);
 typedef GetLocationsFilterCallback = Future<List<Result>> Function({
@@ -12,11 +12,11 @@ typedef GetLocationsFilterCallback = Future<List<Result>> Function({
 
 class LocationssNotifier extends StateNotifier<LocationState> {
   LocationssNotifier({
-    required this.getLocations,
     required this.getInfoLocation,
     required this.getLocationById,
-    required this.getLocationsFilter,
+    required this.getLocations,
     required this.getLocationSearch,
+    required this.getLocationsFilter,
   }) : super(
           const LocationState(
             lastPage: 1000,
@@ -24,13 +24,13 @@ class LocationssNotifier extends StateNotifier<LocationState> {
           ),
         );
 
-  GetLocationsCallback getLocations;
+  bool isLoading = false;
   GetIfoLocationCallback getInfoLocation;
   GetLocationByIdCallback getLocationById;
-  GetLocationsFilterCallback getLocationsFilter;
+  GetLocationsCallback getLocations;
   GetLocationSearchCallback getLocationSearch;
+  GetLocationsFilterCallback getLocationsFilter;
   int currentPage = 0;
-  bool isLoading = false;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {

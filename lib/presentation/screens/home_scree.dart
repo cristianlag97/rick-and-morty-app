@@ -1,9 +1,8 @@
 part of presentation.screen;
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({required this.pageIndex, super.key});
+  const HomeScreen({super.key});
 
-  final int pageIndex;
   static const name = 'home-rick&morty';
 
   @override
@@ -35,13 +34,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final connectivityState = ref.watch(appProviderState);
+    // final isConnect = connectivityState.hasNetwork;
 
     if (pageController.hasClients) {
       pageController.animateToPage(
-        widget.pageIndex,
+        connectivityState.currentPage,
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 250),
       );
+      pageController.initialPage;
     }
 
     return Scaffold(
@@ -51,8 +53,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         children: viewRoutes,
       ),
       bottomNavigationBar:
-          CustomBottomNavigation(currentIndex: widget.pageIndex),
+          CustomBottomNavigation(currentIndex: connectivityState.currentPage),
     );
+    // : const WithoutConnection();
   }
 
   @override

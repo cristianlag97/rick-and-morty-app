@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rick_and_morty_app/config/constants/constants.dart';
 import 'package:rick_and_morty_app/config/helpers/helpers.dart';
 import 'package:rick_and_morty_app/domain/domain.dart';
+import 'package:rick_and_morty_app/presentation/providers/app/app.dart';
 
 import 'ui/shimmer/shimmer.dart';
 

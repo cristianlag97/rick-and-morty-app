@@ -18,10 +18,10 @@ final StateNotifierProvider<LocationssNotifier, LocationState>
   final fetchLocationSearch =
       ref.watch(locationRepositoryProvider).getLocationBySearch;
   return LocationssNotifier(
-    getLocations: fetchMoreCharacters,
     getInfoLocation: fetchInfoLocation,
     getLocationById: fetchLocationById,
-    getLocationsFilter: fetchLocationsFilter,
+    getLocations: fetchMoreCharacters,
     getLocationSearch: fetchLocationSearch,
+    getLocationsFilter: fetchLocationsFilter,
   );
 });

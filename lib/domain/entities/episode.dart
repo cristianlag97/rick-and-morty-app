@@ -1,11 +1,11 @@
 part of domain.entities;
 
 class Episode {
-  final Result results;
   final Info info;
+  final Result results;
 
   Episode({
-    required this.results,
     required this.info,
+    required this.results,
   });
 }

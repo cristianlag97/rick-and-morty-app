@@ -12,8 +12,8 @@ class _EpisodeViewState extends ConsumerState<EpisodeView>
   @override
   void initState() {
     super.initState();
-    ref.read(episodesProvider.notifier).loadEpisodes();
     ref.read(episodesProvider.notifier).getInfoEpisodes();
+    ref.read(episodesProvider.notifier).loadEpisodes();
   }
 
   @override
@@ -50,12 +50,12 @@ class _EpisodeViewState extends ConsumerState<EpisodeView>
                 ],
               ),
               ItemsVerticalView(
-                nameListView: 'episode',
                 characterState: episodeState,
-                loadNextPage: () =>
-                    ref.read(episodesProvider.notifier).loadEpisodes(),
                 loadLastPage: () =>
                     ref.read(episodesProvider.notifier).handleAddInfo(),
+                loadNextPage: () =>
+                    ref.read(episodesProvider.notifier).loadEpisodes(),
+                nameListView: 'episode',
               ),
             ],
           ),

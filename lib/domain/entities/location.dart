@@ -1,11 +1,11 @@
 part of domain.entities;
 
 class Location {
-  final Result results;
   final Info info;
+  final Result results;
 
   Location({
-    required this.results,
     required this.info,
+    required this.results,
   });
 }

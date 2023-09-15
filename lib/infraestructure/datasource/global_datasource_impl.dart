@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart';
-
-import '../../config/config.dart';
-import '../../domain/domain.dart';
-import '../infraestructure.dart';
+part of infraestructure.datasource;
 
 class GlobalDatasourceImpl {
-  Future<T> methodXd<T>({
+  Future<T> consumer<T>({
     int? page,
     String url = '/character/',
     String? filter,
@@ -15,7 +11,7 @@ class GlobalDatasourceImpl {
   }) async {
     try {
       if (T == List<Result>) {
-        return await methodXd2(
+        return await consumerList(
           page: page,
           url: url,
           queryType: queryType,
@@ -48,7 +44,7 @@ class GlobalDatasourceImpl {
     }
   }
 
-  Future<List<Result>> methodXd2({
+  Future<List<Result>> consumerList({
     String? queryType,
     int? page,
     String? url,
@@ -58,10 +54,8 @@ class GlobalDatasourceImpl {
     final response = await dio.get(url!, queryParameters: {
       queryType == 'all' ? 'page' : '': page,
       queryType == 'filter' ? filter!.toLowerCase() : '': query,
-      queryType == 'search' ? 'name' : '':
-          queryType == 'search' ? filter : null,
+      queryType == 'search' ? filter! : '': query,
     });
-    print('=====> ${response.realUri}');
     final responseModel = ModelCharacters.fromJson(response.data);
     final results = responseModel.results
         .map((result) => ResultMapper.resultjsonToEntity(result))

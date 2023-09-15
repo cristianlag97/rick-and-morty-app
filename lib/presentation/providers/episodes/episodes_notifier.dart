@@ -1,8 +1,8 @@
 part of presentation.providers.episodes;
 
+typedef GetEpisodeByIdCallback = Future<Result> Function(String episodeId);
 typedef GetEpisodeCallback = Future<List<Result>> Function({int page});
 typedef GetIfoEpisodeCallback = Future<Info> Function({int page});
-typedef GetEpisodeByIdCallback = Future<Result> Function(String episodeId);
 typedef GetEpisodesFilterCallback = Future<List<Result>> Function({
   String filter,
   String query,
@@ -10,21 +10,21 @@ typedef GetEpisodesFilterCallback = Future<List<Result>> Function({
 
 class EpisodesNotifier extends StateNotifier<EpisodeState> {
   EpisodesNotifier({
-    required this.getEpisodes,
-    required this.getInfoEpisodes,
     required this.getEpisodeById,
+    required this.getEpisodes,
     required this.getEpisodesFilter,
+    required this.getInfoEpisodes,
   }) : super(const EpisodeState(
           lastPage: 1000,
           results: [],
         ));
 
-  GetEpisodeCallback getEpisodes;
-  GetIfoEpisodeCallback getInfoEpisodes;
-  GetEpisodeByIdCallback getEpisodeById;
-  GetEpisodesFilterCallback getEpisodesFilter;
-  int currentPage = 0;
   bool isLoading = false;
+  GetEpisodeByIdCallback getEpisodeById;
+  GetEpisodeCallback getEpisodes;
+  GetEpisodesFilterCallback getEpisodesFilter;
+  GetIfoEpisodeCallback getInfoEpisodes;
+  int currentPage = 0;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {

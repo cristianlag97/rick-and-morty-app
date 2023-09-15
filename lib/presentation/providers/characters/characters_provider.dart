@@ -18,10 +18,10 @@ final StateNotifierProvider<CharactersNotifier, CharacterState>
   final fetchCharactersSearch =
       ref.watch(characterRepositoryProvider).getCharacterBySearch;
   return CharactersNotifier(
-    getCharacters: fetchMoreCharacters,
-    getInfoCharacgers: fetchInfoCharacters,
     getCharacterById: fetchCharacterById,
     getCharacterFilter: fetchCharacterFilter,
+    getCharacters: fetchMoreCharacters,
     getCharactersSearch: fetchCharactersSearch,
+    getInfoCharacgers: fetchInfoCharacters,
   );
 });

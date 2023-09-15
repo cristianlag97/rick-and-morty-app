@@ -16,18 +16,18 @@ class CustomBottomNavigation extends ConsumerWidget {
       case 2:
         context.go('/home/2');
         break;
-      case 3:
-        context.go('/home/3');
-        break;
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
+    final appNotifier = ref.read(appProviderState.notifier);
 
     return BottomNavigationBar(
-        onTap: (int index) => onItemTapped(context, index),
+        onTap: (int index) => appNotifier
+            .handleCurrentPage(index)
+            .then((_) => onItemTapped(context, index)),
         elevation: 0,
         currentIndex: currentIndex,
         selectedItemColor: colors.primary,

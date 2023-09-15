@@ -15,7 +15,7 @@ final searchLocationResultProvider =
   final resultRepository =
       ref.read(locationRepositoryProvider).getLocationBySearch;
   return SearchResultnotifier(
-    searchResults: resultRepository,
     ref: ref,
+    searchResults: resultRepository,
   );
 });

@@ -39,14 +39,14 @@ class LocationDetailsScreen extends StatelessWidget {
 
 class _BodyDetailLocation extends StatelessWidget {
   const _BodyDetailLocation({
+    required this.detailResult,
     required this.size,
     required this.textStyle,
-    required this.detailResult,
   });
 
+  final Result detailResult;
   final Size size;
   final TextTheme textStyle;
-  final Result detailResult;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +78,8 @@ class _BodyDetailLocation extends StatelessWidget {
             ),
             gap16,
             _DataTableLocation(
-              size: size,
               detailResult: detailResult.residents!.length.toString(),
+              size: size,
               type: 'Residents',
             ),
           ],
@@ -91,13 +91,13 @@ class _BodyDetailLocation extends StatelessWidget {
 
 class _DataTableLocation extends StatelessWidget {
   const _DataTableLocation({
-    required this.size,
     required this.detailResult,
+    required this.size,
     required this.type,
   });
 
-  final Size size;
   final String detailResult;
+  final Size size;
   final String type;
 
   @override

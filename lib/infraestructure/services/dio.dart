@@ -1,4 +1,4 @@
-part of config.helpers;
+part of infraestructure.services;
 
 Dio get dio => Dio(
       BaseOptions(

@@ -1,8 +1,8 @@
 part of presentation.providers.characters;
 
+typedef GetCharacterByIdCallback = Future<Result> Function(String characterID);
 typedef GetCharactersCallback = Future<List<Result>> Function({int page});
 typedef GetIfoCharacterCallback = Future<Info> Function({int page});
-typedef GetCharacterByIdCallback = Future<Result> Function(String characterID);
 typedef GetCharacterSearchCallback = Future<List<Result>> Function(
     String filter);
 typedef GetCharactersFilterCallback = Future<List<Result>> Function({
@@ -12,11 +12,11 @@ typedef GetCharactersFilterCallback = Future<List<Result>> Function({
 
 class CharactersNotifier extends StateNotifier<CharacterState> {
   CharactersNotifier({
-    required this.getCharacters,
-    required this.getInfoCharacgers,
     required this.getCharacterById,
     required this.getCharacterFilter,
+    required this.getCharacters,
     required this.getCharactersSearch,
+    required this.getInfoCharacgers,
   }) : super(
           const CharacterState(
             lastPage: 1000,
@@ -24,13 +24,13 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
           ),
         );
 
-  GetCharactersCallback getCharacters;
-  GetIfoCharacterCallback getInfoCharacgers;
-  GetCharacterByIdCallback getCharacterById;
-  GetCharactersFilterCallback getCharacterFilter;
-  GetCharacterSearchCallback getCharactersSearch;
-  int currentPage = 0;
   bool isLoading = false;
+  GetCharacterByIdCallback getCharacterById;
+  GetCharactersCallback getCharacters;
+  GetCharacterSearchCallback getCharactersSearch;
+  GetCharactersFilterCallback getCharacterFilter;
+  GetIfoCharacterCallback getInfoCharacgers;
+  int currentPage = 0;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {

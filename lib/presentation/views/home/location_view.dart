@@ -12,8 +12,8 @@ class _LocationViewState extends ConsumerState<LocationView>
   @override
   void initState() {
     super.initState();
-    ref.read(locationsProvider.notifier).loadLocations();
     ref.read(locationsProvider.notifier).handleAddInfo();
+    ref.read(locationsProvider.notifier).loadLocations();
   }
 
   @override
@@ -54,7 +54,7 @@ class _LocationViewState extends ConsumerState<LocationView>
                           ),
                         ).then((result) {
                           if (result == null) return;
-                          context.push('/home/0/result/${result.id}/location');
+                          context.push('/result/${result.id}/location');
                         });
                       },
                       icon: const Icon(Icons.search),
@@ -72,12 +72,12 @@ class _LocationViewState extends ConsumerState<LocationView>
                 ],
               ),
               ItemsVerticalView(
-                nameListView: 'location',
                 characterState: locationsState,
-                loadNextPage: () =>
-                    ref.read(locationsProvider.notifier).loadLocations(),
                 loadLastPage: () =>
                     ref.read(locationsProvider.notifier).handleAddInfo(),
+                loadNextPage: () =>
+                    ref.read(locationsProvider.notifier).loadLocations(),
+                nameListView: 'location',
               ),
             ],
           ),

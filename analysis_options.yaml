@@ -1,1 +1,28 @@
 include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - my_custom_rule:
+      enabled: true
+      description: "Verifica que cada línea tenga menos de 80 caracteres y respeta las sangrías."
+      details: "Esta regla verifica una condición personalizada en el código."
+      group: my_custom_group
+      severity: error
+      includes:
+        - "**/*.dart" # Asegura que esta regla se aplique a archivos Dart
+      options:
+        line-length: 80 # Establece el límite de 80 caracteres
+    - max-function-lines:
+        enabled: true
+        description: "Verifica que las funciones tengan un máximo de 20 líneas."
+        details: "Esta regla verifica que las funciones no sean demasiado largas."
+        group: style
+        severity: warning
+        options:
+          - 100 # Límite de líneas permitidas en una función
+        includes:
+          - "**/*.dart" # Asegura que esta regla se aplique a archivos Dart
+    - my_custom_padding_rule:
+        enabled: true
+        description: "Usa lo que tenemos en Constants en lugar de EdgeInsets en Padding."
+        details: "Esta regla verifica que uses contansts en lugar de EdgeInsets en Padding."

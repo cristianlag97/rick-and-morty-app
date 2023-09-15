@@ -1,11 +1,11 @@
 part of domain.entities;
 
 class Character {
-  final Result results;
   final Info info;
+  final Result results;
 
   Character({
-    required this.results,
     required this.info,
+    required this.results,
   });
 }

@@ -12,8 +12,8 @@ class _HomeViewState extends ConsumerState<CharacterView>
   @override
   void initState() {
     super.initState();
-    ref.read(charactersProvider.notifier).loadCharacters();
     ref.read(charactersProvider.notifier).handleAddInfo();
+    ref.read(charactersProvider.notifier).loadCharacters();
   }
 
   @override
@@ -25,8 +25,6 @@ class _HomeViewState extends ConsumerState<CharacterView>
     if (characterState.isEmpty || isLoading) {
       return const FullScreenLoading();
     }
-
-    // if (isLoading) return Text('Holaaaaaaaa');
 
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
@@ -55,7 +53,7 @@ class _HomeViewState extends ConsumerState<CharacterView>
                           ),
                         ).then((result) {
                           if (result == null) return;
-                          context.push('/home/0/result/${result.id}/character');
+                          context.push('/result/${result.id}/character');
                         });
                       },
                       icon: const Icon(Icons.search),

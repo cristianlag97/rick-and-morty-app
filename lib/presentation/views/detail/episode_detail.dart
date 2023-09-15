@@ -25,9 +25,9 @@ class EpisodeDetailsScreen extends StatelessWidget {
               icon: const Icon(Icons.arrow_back),
             ),
             _BodyDetailEpisode(
+              detailResult: detailResult!,
               size: size,
               textStyle: textStyle,
-              detailResult: detailResult!,
             )
           ],
         ),
@@ -39,14 +39,14 @@ class EpisodeDetailsScreen extends StatelessWidget {
 
 class _BodyDetailEpisode extends StatelessWidget {
   const _BodyDetailEpisode({
+    required this.detailResult,
     required this.size,
     required this.textStyle,
-    required this.detailResult,
   });
 
+  final Result detailResult;
   final Size size;
   final TextTheme textStyle;
-  final Result detailResult;
 
   @override
   Widget build(BuildContext context) {
@@ -60,26 +60,26 @@ class _BodyDetailEpisode extends StatelessWidget {
             Text('- PROPERTIES -', style: textStyle.titleSmall),
             gap16,
             _DataTableEpisode(
-              size: size,
               detailResult: detailResult.name,
+              size: size,
               type: 'Name',
             ),
             gap16,
             _DataTableEpisode(
-              size: size,
               detailResult: detailResult.airDate!,
+              size: size,
               type: 'Air date',
             ),
             gap16,
             _DataTableEpisode(
-              size: size,
               detailResult: detailResult.episode!,
+              size: size,
               type: 'Episode',
             ),
             gap16,
             _DataTableEpisode(
-              size: size,
               detailResult: detailResult.characters!.length.toString(),
+              size: size,
               type: 'Characters',
             ),
           ],
@@ -91,13 +91,13 @@ class _BodyDetailEpisode extends StatelessWidget {
 
 class _DataTableEpisode extends StatelessWidget {
   const _DataTableEpisode({
-    required this.size,
     required this.detailResult,
+    required this.size,
     required this.type,
   });
 
-  final Size size;
   final String detailResult;
+  final Size size;
   final String type;
 
   @override

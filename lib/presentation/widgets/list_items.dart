@@ -5,14 +5,14 @@ class ItemsVerticalView extends StatefulWidget {
     super.key,
     required this.characterState,
     required this.nameListView,
-    this.loadNextPage,
     this.loadLastPage,
+    this.loadNextPage,
   });
 
   final List<dynamic> characterState;
-  final VoidCallback? loadNextPage;
-  final VoidCallback? loadLastPage;
   final String nameListView;
+  final VoidCallback? loadLastPage;
+  final VoidCallback? loadNextPage;
 
   @override
   State<ItemsVerticalView> createState() => _ItemsVerticalViewState();

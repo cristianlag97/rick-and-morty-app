@@ -16,7 +16,7 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push('/home/0/result/${result.id}/$nameListView');
+        context.push('/result/${result.id}/$nameListView');
       },
       child: Container(
         width: 300,
