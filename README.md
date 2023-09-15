@@ -16,10 +16,11 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 # views
-<img width="150" src="./images/image1.jpeg" alt="image1">
-<img width="150" src="./images/image2.jpeg" alt="image2">
-<img width="150" src="./images/image3.jpeg" alt="image3">
-<img width="150" src="./images/image4.jpeg" alt="image4">
+
 <img width="150" src="./images/image5.jpeg" alt="image5">
 <img width="150" src="./images/image6.jpeg" alt="image6">
-
+<img width="150" src="./images/image3.jpeg" alt="image3">
+<img width="150" src="./images/image4.jpeg" alt="image4">
+<img width="150" src="./images/image1.jpeg" alt="image1">
+<img width="150" src="./images/image2.jpeg" alt="image2">
+<img width="150" src="./images/image7.jpeg" alt="image7">
