@@ -1,22 +1,8 @@
 part of presentation.providers.location;
 
-typedef GetIfoLocationCallback = Future<Info> Function({int page});
-typedef GetLocationByIdCallback = Future<Result> Function(String locationId);
-typedef GetLocationsCallback = Future<List<Result>> Function({int page});
-typedef GetLocationSearchCallback = Future<List<Result>> Function(
-    String filter);
-typedef GetLocationsFilterCallback = Future<List<Result>> Function({
-  String filter,
-  String query,
-});
-
 class LocationssNotifier extends StateNotifier<LocationState> {
   LocationssNotifier({
-    required this.getInfoLocation,
-    required this.getLocationById,
-    required this.getLocations,
-    required this.getLocationSearch,
-    required this.getLocationsFilter,
+    required this.locationRepository,
   }) : super(
           const LocationState(
             lastPage: 1000,
@@ -25,16 +11,12 @@ class LocationssNotifier extends StateNotifier<LocationState> {
         );
 
   bool isLoading = false;
-  GetIfoLocationCallback getInfoLocation;
-  GetLocationByIdCallback getLocationById;
-  GetLocationsCallback getLocations;
-  GetLocationSearchCallback getLocationSearch;
-  GetLocationsFilterCallback getLocationsFilter;
+  LocationRepository locationRepository;
   int currentPage = 0;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {
-      final info = await getInfoLocation(page: currentPage);
+      final info = await locationRepository.getInfoLocation(page: currentPage);
       state = state.copyWith(lastPage: info.pages);
     }
   }
@@ -46,7 +28,8 @@ class LocationssNotifier extends StateNotifier<LocationState> {
       state.results.isEmpty && currentPage > 0
           ? currentPage = 1
           : currentPage++;
-      final List<Result> locations = await getLocations(page: currentPage);
+      final List<Result> locations =
+          await locationRepository.getAllLocation(page: currentPage);
       state = state.copyWith(results: [...state.results, ...locations]);
       await Future.delayed(const Duration(milliseconds: 300));
       isLoading = false;
@@ -56,7 +39,8 @@ class LocationssNotifier extends StateNotifier<LocationState> {
   Future<void> loadLocationId(String locationId) async {
     if (isLoading) return;
     isLoading = true;
-    final Result location = await getLocationById(locationId);
+    final Result location =
+        await locationRepository.getLocationById(locationId);
     state = state.copyWith(
       result: location,
       resultsMap: {
@@ -75,7 +59,7 @@ class LocationssNotifier extends StateNotifier<LocationState> {
     state = state.copyWith(isLoading: true);
     if (isLoading) return;
     isLoading = true;
-    final List<Result> locations = await getLocationsFilter(
+    final List<Result> locations = await locationRepository.getLocationByFilter(
       filter: filter,
       query: query,
     );
@@ -90,7 +74,8 @@ class LocationssNotifier extends StateNotifier<LocationState> {
     if (isLoading) return;
     isLoading = true;
     if (state.isFilter) {
-      final List<Result> locations = await getLocations(page: currentPage);
+      final List<Result> locations =
+          await locationRepository.getAllLocation(page: currentPage);
       state = state.copyWith(
         isFilter: false,
         results: [...locations],
@@ -105,7 +90,8 @@ class LocationssNotifier extends StateNotifier<LocationState> {
     try {
       if (isLoading) return;
       isLoading = true;
-      final List<Result> locations = await getLocationSearch(filter);
+      final List<Result> locations =
+          await locationRepository.getLocationBySearch(filter);
       state = state.copyWith(results: locations);
       await Future.delayed(const Duration(milliseconds: 300));
       isLoading = false;

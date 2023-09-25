@@ -12,7 +12,7 @@ class _EpisodeViewState extends ConsumerState<EpisodeView>
   @override
   void initState() {
     super.initState();
-    ref.read(episodesProvider.notifier).getInfoEpisodes();
+    ref.read(episodesProvider.notifier).handleAddInfo();
     ref.read(episodesProvider.notifier).loadEpisodes();
   }
 

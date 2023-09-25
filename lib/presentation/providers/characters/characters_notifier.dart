@@ -1,22 +1,8 @@
 part of presentation.providers.characters;
 
-typedef GetCharacterByIdCallback = Future<Result> Function(String characterID);
-typedef GetCharactersCallback = Future<List<Result>> Function({int page});
-typedef GetIfoCharacterCallback = Future<Info> Function({int page});
-typedef GetCharacterSearchCallback = Future<List<Result>> Function(
-    String filter);
-typedef GetCharactersFilterCallback = Future<List<Result>> Function({
-  String filter,
-  String query,
-});
-
 class CharactersNotifier extends StateNotifier<CharacterState> {
   CharactersNotifier({
-    required this.getCharacterById,
-    required this.getCharacterFilter,
-    required this.getCharacters,
-    required this.getCharactersSearch,
-    required this.getInfoCharacgers,
+    required this.charactersRepository,
   }) : super(
           const CharacterState(
             lastPage: 1000,
@@ -25,16 +11,13 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
         );
 
   bool isLoading = false;
-  GetCharacterByIdCallback getCharacterById;
-  GetCharactersCallback getCharacters;
-  GetCharacterSearchCallback getCharactersSearch;
-  GetCharactersFilterCallback getCharacterFilter;
-  GetIfoCharacterCallback getInfoCharacgers;
+  CharactersRepository charactersRepository;
   int currentPage = 0;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {
-      final info = await getInfoCharacgers(page: currentPage);
+      final info =
+          await charactersRepository.getInfoCharacter(page: currentPage);
       state = state.copyWith(lastPage: info.pages);
     }
   }
@@ -46,7 +29,8 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
       state.results.isEmpty && currentPage > 0
           ? currentPage = 1
           : currentPage++;
-      final List<Result> characters = await getCharacters(page: currentPage);
+      final List<Result> characters =
+          await charactersRepository.getAllCharacter(page: currentPage);
       state = state.copyWith(results: [...state.results, ...characters]);
       await Future.delayed(const Duration(milliseconds: 300));
       isLoading = false;
@@ -56,7 +40,8 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
   Future<void> loadCharacterId(String characterId) async {
     if (isLoading) return;
     isLoading = true;
-    final Result character = await getCharacterById(characterId);
+    final Result character =
+        await charactersRepository.getCharacterById(characterId);
     state = state.copyWith(
       result: character,
       resultsMap: {
@@ -75,7 +60,8 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
     state = state.copyWith(isLoading: true);
     if (isLoading) return;
     isLoading = true;
-    final List<Result> character = await getCharacterFilter(
+    final List<Result> character =
+        await charactersRepository.getCharacterByFilter(
       filter: filter,
       query: query,
     );
@@ -93,7 +79,8 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
     if (isLoading) return;
     isLoading = true;
     if (state.isFilter) {
-      final List<Result> characters = await getCharacters(page: currentPage);
+      final List<Result> characters =
+          await charactersRepository.getAllCharacter(page: currentPage);
       state = state.copyWith(
         isFilter: false,
         results: [...characters],
@@ -107,7 +94,8 @@ class CharactersNotifier extends StateNotifier<CharacterState> {
   Future<void> loadSearchResult(String filter) async {
     if (isLoading) return;
     isLoading = true;
-    final List<Result> characters = await getCharactersSearch(filter);
+    final List<Result> characters =
+        await charactersRepository.getCharacterBySearch(filter);
     state = state.copyWith(results: characters);
     await Future.delayed(const Duration(milliseconds: 300));
     isLoading = false;

@@ -16,10 +16,14 @@ class CharactersRepositoryImpl extends CharactersRepository {
   }
 
   @override
-  Future<List<Result>> getCharacterByFilter(
-      {String filter = '', String query = ''}) {
+  Future<List<Result>> getCharacterByFilter({
+    String filter = '',
+    String query = '',
+  }) {
     return charactersDatarource.getCharacterByFilter(
-        filter: filter, query: query);
+      filter: filter,
+      query: query,
+    );
   }
 
   @override

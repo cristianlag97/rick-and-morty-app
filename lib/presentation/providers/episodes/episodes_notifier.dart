@@ -1,34 +1,20 @@
 part of presentation.providers.episodes;
 
-typedef GetEpisodeByIdCallback = Future<Result> Function(String episodeId);
-typedef GetEpisodeCallback = Future<List<Result>> Function({int page});
-typedef GetIfoEpisodeCallback = Future<Info> Function({int page});
-typedef GetEpisodesFilterCallback = Future<List<Result>> Function({
-  String filter,
-  String query,
-});
-
 class EpisodesNotifier extends StateNotifier<EpisodeState> {
   EpisodesNotifier({
-    required this.getEpisodeById,
-    required this.getEpisodes,
-    required this.getEpisodesFilter,
-    required this.getInfoEpisodes,
+    required this.episodeRepository,
   }) : super(const EpisodeState(
           lastPage: 1000,
           results: [],
         ));
 
   bool isLoading = false;
-  GetEpisodeByIdCallback getEpisodeById;
-  GetEpisodeCallback getEpisodes;
-  GetEpisodesFilterCallback getEpisodesFilter;
-  GetIfoEpisodeCallback getInfoEpisodes;
+  EpisodeRepository episodeRepository;
   int currentPage = 0;
 
   Future<void> handleAddInfo() async {
     if ((currentPage != state.lastPage) && !state.isFilter) {
-      final info = await getInfoEpisodes(page: currentPage);
+      final info = await episodeRepository.getInfoEpisode(page: currentPage);
       state = state.copyWith(lastPage: info.pages);
     }
   }
@@ -40,7 +26,8 @@ class EpisodesNotifier extends StateNotifier<EpisodeState> {
       state.results.isEmpty && currentPage > 0
           ? currentPage = 1
           : currentPage++;
-      final List<Result> episodes = await getEpisodes(page: currentPage);
+      final List<Result> episodes =
+          await episodeRepository.getAllEpisode(page: currentPage);
       state = state.copyWith(results: [...state.results, ...episodes]);
       await Future.delayed(const Duration(milliseconds: 300));
       isLoading = false;
@@ -50,7 +37,7 @@ class EpisodesNotifier extends StateNotifier<EpisodeState> {
   Future<void> loadEpisodeId(String episodeId) async {
     if (isLoading) return;
     isLoading = true;
-    final Result episode = await getEpisodeById(episodeId);
+    final Result episode = await episodeRepository.getEpisodeById(episodeId);
     state = state.copyWith(
       result: episode,
       resultsMap: {
@@ -69,7 +56,7 @@ class EpisodesNotifier extends StateNotifier<EpisodeState> {
     state = state.copyWith(isLoading: true);
     if (isLoading) return;
     isLoading = true;
-    final List<Result> episode = await getEpisodesFilter(
+    final List<Result> episode = await episodeRepository.getEpisodeByFilter(
       filter: filter,
       query: query,
     );
@@ -87,7 +74,8 @@ class EpisodesNotifier extends StateNotifier<EpisodeState> {
     if (isLoading) return;
     isLoading = true;
     if (state.isFilter) {
-      final List<Result> episodes = await getEpisodes(page: currentPage);
+      final List<Result> episodes =
+          await episodeRepository.getAllEpisode(page: currentPage);
       state = state.copyWith(
         isFilter: false,
         results: [...episodes],
