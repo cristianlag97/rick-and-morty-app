@@ -7,21 +7,12 @@ final characterRepositoryProvider = Provider((ref) {
 final StateNotifierProvider<CharactersNotifier, CharacterState>
     charactersProvider =
     StateNotifierProvider<CharactersNotifier, CharacterState>((ref) {
-  final fetchMoreCharacters =
-      ref.watch(characterRepositoryProvider).getAllCharacter;
-  final fetchInfoCharacters =
-      ref.watch(characterRepositoryProvider).getInfoCharacter;
-  final fetchCharacterById =
-      ref.watch(characterRepositoryProvider).getCharacterById;
-  final fetchCharacterFilter =
-      ref.watch(characterRepositoryProvider).getCharacterByFilter;
-  final fetchCharactersSearch =
-      ref.watch(characterRepositoryProvider).getCharacterBySearch;
+  final fetchCharacters = ref.watch(characterRepositoryProvider);
   return CharactersNotifier(
-    getCharacterById: fetchCharacterById,
-    getCharacterFilter: fetchCharacterFilter,
-    getCharacters: fetchMoreCharacters,
-    getCharactersSearch: fetchCharactersSearch,
-    getInfoCharacgers: fetchInfoCharacters,
+    getCharacterById: fetchCharacters.getCharacterById,
+    getCharacterFilter: fetchCharacters.getCharacterByFilter,
+    getCharacters: fetchCharacters.getAllCharacter,
+    getCharactersSearch: fetchCharacters.getCharacterBySearch,
+    getInfoCharacgers: fetchCharacters.getInfoCharacter,
   );
 });
