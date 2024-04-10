@@ -8,7 +8,7 @@ class CharacterBottomSheet extends ConsumerWidget {
     final textStyle = Theme.of(context).textTheme;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: colorTransparent,
+      backgroundColor: transparent,
       bottomNavigationBar: BottomNavigation(
         deleteFilter: () =>
             ref.read(charactersProvider.notifier).handleDeleteFilter(),
@@ -17,7 +17,7 @@ class CharacterBottomSheet extends ConsumerWidget {
         width: size.width,
         height: size.height * 0.4,
         child: Padding(
-          padding: p16,
+          padding: padding16,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,7 @@ class CharacterBottomSheet extends ConsumerWidget {
                   Container(
                     width: size30,
                     height: size4,
-                    color: colorGreyLight,
+                    color: lightGrey,
                   ),
                 ],
               ),

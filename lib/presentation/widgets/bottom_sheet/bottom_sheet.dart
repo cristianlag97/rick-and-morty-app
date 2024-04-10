@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/config.dart';
+import '../../../config/helpers/emun/enum.dart';
 import '../../presentation.dart';
 
 part 'bottom_navigation.dart';

@@ -1,6 +1,6 @@
 library infraestructure.models;
 
-import '../../config/helpers/helpers.dart';
+import '../../config/helpers/emun/enum.dart';
 
 part 'model_characters.dart';
 part 'model_info.dart';

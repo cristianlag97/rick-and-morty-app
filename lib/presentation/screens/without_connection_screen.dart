@@ -10,7 +10,7 @@ class WithoutConnection extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.network_check_outlined, size: size30, color: colorDead),
+            Icon(Icons.network_check_outlined, size: size30, color: deadColor),
             Text('Without Internet'),
           ],
         ),

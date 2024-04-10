@@ -15,7 +15,7 @@ class CardCharacterItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: p8,
+      padding: padding16,
       child: Row(
         children: <Widget>[
           if (result.image.isNotEmpty) ...<Widget>[

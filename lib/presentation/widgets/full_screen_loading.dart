@@ -9,7 +9,7 @@ class FullScreenLoading extends StatelessWidget {
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: px16,
+        padding: paddingHorizontal16,
         child: Column(
           children: [
             gap16,
@@ -21,7 +21,7 @@ class FullScreenLoading extends StatelessWidget {
                     width: size.width * 0.25,
                     height: size.height * 0.04,
                     decoration: const BoxDecoration(
-                      color: colorGreyLight,
+                      color: lightGrey,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                   ),
@@ -31,7 +31,7 @@ class FullScreenLoading extends StatelessWidget {
                     width: size.width * 0.25,
                     height: size.height * 0.04,
                     decoration: const BoxDecoration(
-                      color: colorGreyLight,
+                      color: lightGrey,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                   ),
@@ -48,7 +48,7 @@ class FullScreenLoading extends StatelessWidget {
                     height: size.height * 0.15,
                     width: size.width,
                     decoration: const BoxDecoration(
-                      color: colorGreyLight,
+                      color: lightGrey,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                   ),

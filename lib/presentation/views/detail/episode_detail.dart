@@ -53,7 +53,7 @@ class _BodyDetailEpisode extends StatelessWidget {
     return SizedBox(
       width: size.width,
       child: Padding(
-        padding: px16,
+        padding: paddingHorizontal16,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -106,16 +106,16 @@ class _DataTableEpisode extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          padding: p8,
+          padding: padding8,
           decoration: BoxDecoration(
-              color: colorGreyLight, borderRadius: BorderRadius.circular(10)),
+              color: lightGrey, borderRadius: BorderRadius.circular(10)),
           child: Text(type),
         ),
         Container(
           width: size.width * 0.6,
-          padding: p8,
+          padding: padding8,
           decoration: BoxDecoration(
-              color: colorGreyLight, borderRadius: BorderRadius.circular(10)),
+              color: lightGrey, borderRadius: BorderRadius.circular(10)),
           child: Text(detailResult),
         ),
       ],

@@ -15,7 +15,7 @@ class CardLocationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: p8,
+      padding: padding8,
       child: Row(
         children: <Widget>[
           Expanded(

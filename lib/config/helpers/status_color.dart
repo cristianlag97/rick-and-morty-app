@@ -3,11 +3,11 @@ part of config.helpers;
 Color statusColor(Status status) {
   switch (status) {
     case Status.alive:
-      return colorAlive;
+      return aliveColor;
     case Status.dead:
-      return colorDead;
+      return deadColor;
     case Status.unknown:
     default:
-      return colorGray;
+      return greyColor;
   }
 }

@@ -16,8 +16,8 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: colorShimmer,
-      highlightColor: colorGreyLight,
+      baseColor: shimmer,
+      highlightColor: lightGrey,
       child: widget.child,
     );
   }

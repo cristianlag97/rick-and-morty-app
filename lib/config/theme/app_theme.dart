@@ -6,7 +6,7 @@ class AppTheme {
   ThemeData getTheme() => ThemeData(
         //* General */
         useMaterial3: true,
-        colorSchemeSeed: colorPrimary,
+        colorSchemeSeed: primaryColor,
 
         ///* Texts
         textTheme: TextTheme(

@@ -30,7 +30,7 @@ class _EpisodeViewState extends ConsumerState<EpisodeView>
       physics: const NeverScrollableScrollPhysics(),
       child: SafeArea(
         child: Padding(
-          padding: p16,
+          padding: paddingHorizontal16,
           child: Column(
             children: <Widget>[
               gapy16,

@@ -1,6 +1,6 @@
 library domain.entities;
 
-import '../../config/helpers/helpers.dart';
+import '../../config/helpers/emun/enum.dart';
 
 part 'character.dart';
 part 'episode.dart';

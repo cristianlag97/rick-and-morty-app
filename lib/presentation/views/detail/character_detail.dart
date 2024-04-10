@@ -57,7 +57,7 @@ class _BodyDetail extends StatelessWidget {
     return SizedBox(
       width: size.width,
       child: Padding(
-        padding: px16,
+        padding: paddingHorizontal16,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -132,16 +132,16 @@ class _DataTable extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          padding: p8,
+          padding: padding8,
           decoration: BoxDecoration(
-              color: colorGreyLight, borderRadius: BorderRadius.circular(10)),
+              color: lightGrey, borderRadius: BorderRadius.circular(10)),
           child: Text(type),
         ),
         Container(
           width: size.width * 0.65,
-          padding: p8,
+          padding: padding8,
           decoration: BoxDecoration(
-              color: colorGreyLight, borderRadius: BorderRadius.circular(10)),
+              color: lightGrey, borderRadius: BorderRadius.circular(10)),
           child: Text(detailResult),
         ),
       ],
@@ -195,7 +195,7 @@ class _ImageDetaild extends StatelessWidget {
                     ),
                     child: Text(
                       detailResult!.status.name.toUpperCase(),
-                      style: const TextStyle(color: colorWhite),
+                      style: const TextStyle(color: whiteColor),
                       textAlign: TextAlign.center,
                     ),
                   ),
